@@ -14,10 +14,14 @@ public class CompanyScript {
         company.getEmployeeNames().add("Chris");
         company.getEmployeeNames().printList();
         System.out.println("list length = " + company.getEmployeeNames().getLength());
+        System.out.println("Try to delete Fred who's not in the list");
+        company.getEmployeeNames().delete("Fred");
         System.out.println("Delete Chris");
         company.getEmployeeNames().delete("Chris");
         company.getEmployeeNames().printList();
         System.out.println("list length = " + company.getEmployeeNames().getLength());
+        System.out.println("Try to delete Bill - not in the list");
+        company.getEmployeeNames().delete("Bill");
         company.getEmployeeNINumbers().add(1004);
         company.getEmployeeNINumbers().add(1003);
         company.getEmployeeNINumbers().add(1002);

@@ -30,7 +30,7 @@ public class GenericDLL<T> {
         boolean found = false;
         if (left != null) {
             // Special case: value to delete - 1st in list
-            if (left.value == value) {
+            if (left.value.equals(value)) {
                 found = true;
                 left = left.next;
                 if (left != null) {
@@ -47,6 +47,8 @@ public class GenericDLL<T> {
                         temp.next = temp.next.next;
                         if (temp.next != null) {
                             temp.next.previous = temp;
+                        } else {
+                            right = temp;
                         }
                     }
                     temp = temp.next;
