@@ -3,10 +3,10 @@
  */
 // Left & Right pointer variables used - as in FoC notes
 public class GenericDLL<T> {
-    private Node left, right;
-    private int length;
+    protected Node left, right;
+    protected int length;
 
-    public GenericDLL() {
+    public <T> GenericDLL() {
         left = null;
         right = null;
         length = 0;
@@ -76,15 +76,19 @@ public class GenericDLL<T> {
         return length;
     }
     
-    private static class Node<T> {
-        private T value;
-        private Node next;
-        private Node previous;
+    protected static class Node<T> {
+        protected T value;
+        protected Node<T> next;
+        protected Node<T> previous;
 
         public Node(T value) {
             this.value = value;
             next = null;
             previous = null;
+        }
+
+        public Node() {
+            this(null);
         }
 
         public String toString() {

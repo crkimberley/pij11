@@ -22,10 +22,14 @@ public class CompanyScript {
         System.out.println("list length = " + company.getEmployeeNames().getLength());
         System.out.println("Try to delete Bill - not in the list");
         company.getEmployeeNames().delete("Bill");
-        company.getEmployeeNINumbers().add(1004);
+        company.getEmployeeNINumbers().add(1006);
         company.getEmployeeNINumbers().add(1003);
-        company.getEmployeeNINumbers().add(1002);
+        company.getEmployeeNINumbers().add(1007);
+        company.getEmployeeNINumbers().add(1005);
+        company.getEmployeeNINumbers().add(1009);
         company.getEmployeeNINumbers().add(1001);
+        company.getEmployeeNINumbers().add(1002);
+        company.getEmployeeNINumbers().add(1008);
         company.getEmployeeNINumbers().printList();
         System.out.println("list length = " + company.getEmployeeNINumbers().getLength());
         System.out.println("Delete 1001");
