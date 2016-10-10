@@ -7,46 +7,61 @@ import static java.lang.Math.abs;
  */
 public class HashTable<K,V> {
     private static final int MAX = 1000;
-    private KeyValueList[] keyValueLists;
+    private ValueList[] valueLists;
 
     public HashTable() {
-        keyValueLists = new KeyValueList[MAX];
+        valueLists = new ValueList[MAX];
         for (int i=0; i<MAX; i++) {
-            keyValueLists[i] = null;
+            valueLists[i] = null;
         }
     }
 
     public void put(K key, V value) {
-        int index = getKeyValueListsIndex(key);
-        if (keyValueLists[index] == null) {
-            keyValueLists[index] = new KeyValueList(key, value);
+        int index = getValueListsIndex(key);
+        if (valueLists[index] == null) {
+            valueLists[index] = new ValueList(value);
         } else {
-            keyValueLists[index].addValue(value);
+            valueLists[index].addValue(value);
         }
     }
 
     public ArrayList<V> get(K key) {
-        int index = getKeyValueListsIndex(key);
-        if (keyValueLists[index] != null) {
-            return keyValueLists[index].getValues();
+        int index = getValueListsIndex(key);
+        if (valueLists[index] != null) {
+            return valueLists[index].getValues();
         }
         System.out.println("Key not found in map");
         return null;
     }
 
     public boolean remove(K key) {
-        int index = getKeyValueListsIndex(key);
-        if (keyValueLists[index] != null) {
-            keyValueLists[index] = null;
+        int index = getValueListsIndex(key);
+        if (valueLists[index] != null) {
+            valueLists[index] = null;
             return true;
         }
         System.out.println("Key not found in map");
         return false;
     }
 
-    private int getKeyValueListsIndex(K key) {
+    private int getValueListsIndex(K key) {
         return abs(key.hashCode() % MAX);
     }
 
+    private static class ValueList<V> {
+        private ArrayList<V> values;
 
+        public ValueList(V value) {
+            values = new ArrayList<V>();
+            values.add(value);
+        }
+
+        public void addValue(V value) {
+            values.add(value);
+        }
+
+        public ArrayList<V> getValues() {
+            return values;
+        }
+    }
 }
