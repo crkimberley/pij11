@@ -30,5 +30,16 @@ public class HashTableTest {
         table2.put("Carrot", 978.5);
         System.out.println(table2.get("Potato"));
         System.out.println(table2.get("Carrot"));
+
+        HashTableConciseCode<Integer, String> table3 = new HashTableConciseCode<Integer, String>();
+        table3.put(10, "red");
+        table3.put(10, "yellow");
+        table3.put(30, "north");
+        table3.put(30, "west");
+        System.out.println(table3.get(10));
+        System.out.println(table3.get(30));
+        table3.remove(30);
+        System.out.println(table3.get(30));
+        System.out.println(table3.get(10));
     }
 }
