@@ -1,34 +1,34 @@
 import java.util.ArrayList;
-
-import static java.lang.Math.abs;
+import java.util.List;
 
 /**
  * @author crkimberley on 09/10/2016.
  */
 public class HashTable<K,V> {
     private static final int MAX = 1000;
-    private ValueList[] valueLists;
+    private List<V>[] valueLists;
 
     public HashTable() {
-        valueLists = new ValueList[MAX];
-        for (int i=0; i<MAX; i++) {
-            valueLists[i] = null;
+        valueLists = new List[MAX];
+        for (List list : valueLists) {
+            list = null;
         }
     }
 
     public void put(K key, V value) {
         int index = getValueListsIndex(key);
         if (valueLists[index] == null) {
-            valueLists[index] = new ValueList(value);
+            valueLists[index] = new ArrayList<V>();
+            valueLists[index].add(value);
         } else {
-            valueLists[index].addValue(value);
+            valueLists[index].add(value);
         }
     }
 
-    public ArrayList<V> get(K key) {
+    public List<V> get(K key) {
         int index = getValueListsIndex(key);
         if (valueLists[index] != null) {
-            return valueLists[index].getValues();
+            return valueLists[index];
         }
         System.out.println("Key not found in map");
         return null;
@@ -45,23 +45,6 @@ public class HashTable<K,V> {
     }
 
     private int getValueListsIndex(K key) {
-        return abs(key.hashCode() % MAX);
-    }
-
-    private static class ValueList<V> {
-        private ArrayList<V> values;
-
-        public ValueList(V value) {
-            values = new ArrayList<V>();
-            values.add(value);
-        }
-
-        public void addValue(V value) {
-            values.add(value);
-        }
-
-        public ArrayList<V> getValues() {
-            return values;
-        }
+        return Math.abs(key.hashCode() % MAX);
     }
 }
